@@ -4,7 +4,7 @@ profile: "bx2-2x8"
 name_prefix: "job2vsi-demo-"
 vpc_id: "r042-6b497e29-403d-4e01-a4c0-889f229d2cef"
 zone_name: "br-sao-1"
-image: "r042-41f2a813-a85d-4e1a-8726-06410802b2f3 "
+image: "r042-41f2a813-a85d-4e1a-8726-06410802b2f3"
 subnet_id: "02u7-32806cb8-93ef-44cb-9d5a-1b8a91e25b28"
 
 customer_commands:
