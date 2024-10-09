@@ -1,20 +1,30 @@
 region: "br-sao"
 profile: "bx2-2x8"
 # prefix of the VSI name
-name_prefix: "job2vsi-demo-"
+name_prefix: "job2vsi-rotina-vni-"
 vpc_id: "r042-6b497e29-403d-4e01-a4c0-889f229d2cef"
-zone_name: "br-sao-1"
+zone_name: "br-sao-2"
 image: "r042-41f2a813-a85d-4e1a-8726-06410802b2f3"
 subnet_id: "02u7-32806cb8-93ef-44cb-9d5a-1b8a91e25b28"
+floating_ip_name_prefix: "job2vsi-floating-ip-"
+ssh_key_id: "r042-ab79a298-3f07-4fe8-82b7-ea8718358a20"
 
+# instala o Docker e o ibmcloud CLI para importar imagem do código do Container Registry.
 customer_commands:
-  - echo "Hello World" >> /run/workload.log
+  - yum install docker -y
+  - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+  - ibmcloud login --apikey <API_KEY> -r <REGION> -g <RESOURCE_GROUP>
+  - ibmcloud plugin install cr
+  - mkdir /etc/containers/nodocker
+  - ibmcloud cr login
+  - docker pull br.icr.io/rotina-vni-ns/pooling-vni:latest
+  - docker run br.icr.io/rotina-vni-ns/pooling-vni:latest
 
 vsi_start_timeout: 5
 
 shut_down_vsi: true
 
-delete_vsi_after_execution: false
+delete_vsi_after_execution: true
 
 instance_storage_mount_path: "/mnt/"
 
